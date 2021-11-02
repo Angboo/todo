@@ -1,9 +1,15 @@
+import { useDispatch } from 'react-redux'
 import '../style/TodoItem.css'
 const TodoItem = ({ todo }) => {
-    console.log(todo)
-    return (<div className='box'>
+    const dispatch = useDispatch();
+    const className = todo.done ? 'box done' : 'box'
+    return (<div
+        onClick={() => dispatch({ type: 'todo/updateStatus', payload: todo.id })}
+        className={className}>
         {todo.text}
-        <span className='delete'>x</span>
+        <span
+            onClick={() => dispatch({ type: 'todo/delete', payload: todo.id })}
+            className='delete'>x</span>
     </div>)
 }
 export default TodoItem
