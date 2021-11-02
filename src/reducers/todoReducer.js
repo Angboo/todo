@@ -1,6 +1,7 @@
 import { v4 as uuidv4 } from 'uuid'
 
 const initState = { todoList: [] }
+
 const todoReducer = (state = initState, action) => {
     switch (action.type) {
         case 'todo/add':

@@ -9,7 +9,10 @@ const TodoItem = ({ todo }) => {
         {todo.text}
         <span
             onClick={() => dispatch({ type: 'todo/delete', payload: todo.id })}
-            className='delete'>x</span>
+            className='delete'
+        >
+            x
+        </span>
     </div>)
 }
 export default TodoItem
