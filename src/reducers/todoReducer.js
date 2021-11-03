@@ -20,6 +20,9 @@ const todoReducer = (state = initState, action) => {
                 return item.id !== action.payload
             })
             return { todoList: filteredList }
+        case 'todo/init':
+            console.log(action)
+            return { todoList: action.payload }
         default:
             return state
     }
