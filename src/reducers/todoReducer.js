@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from 'uuid'
 const initState = { todoList: [] }
 const todoReducer = (state = initState, action) => {
     switch (action.type) {
-        case 'todo/add':
+        case ADD_TODO:
             const todo = { id: uuidv4(), text: action.payload, done: false }
             return { todoList: [...state.todoList, todo] }
-        case 'todo/updateStatus':
+
+        case UPDATE_TODO_STATUS:
             const newTodoList = state.todoList.map(item => {
                 if (item.id === action.payload) {
                     return { ...item, done: !item.done }
@@ -14,14 +15,19 @@ const todoReducer = (state = initState, action) => {
                 return item
             })
             return { todoList: newTodoList }
-        case 'todo/delete':
+
+        case DELETE_TODO:
             const filteredList = state.todoList.filter(item => {
                 return item.id !== action.payload
             })
             return { todoList: filteredList }
+
         default:
             return state
     }
 }
 
+export const ADD_TODO = 'todo/add'
+export const UPDATE_TODO_STATUS = 'todo/updateStatus'
+export const DELETE_TODO = 'todo/delete'
 export default todoReducer
